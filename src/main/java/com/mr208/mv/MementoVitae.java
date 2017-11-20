@@ -20,8 +20,7 @@ public class MementoVitae {
     @Mod.EventHandler
     public void onInit(FMLInitializationEvent event) {
 
-        if(event.getSide() == Side.SERVER)
-            MinecraftForge.EVENT_BUS.register(DeathEvents.INSTANCE);
+        MinecraftForge.EVENT_BUS.register(DeathEvents.INSTANCE);
     }
 
     @net.minecraftforge.common.config.Config(modid = MOD_ID, name = MOD_NAME)
@@ -43,7 +42,7 @@ public class MementoVitae {
                 EntityPlayer deadBody = event.getOriginal();
                 EntityPlayer cloneBody = event.getEntityPlayer();
 
-                float xp = deadBody.experienceTotal * ((100f - (float)Config.xpLossOnDeath)/100f);
+                float xp = deadBody.experienceTotal * (((100f - (float)Config.xpLossOnDeath))/100f);
 
                 cloneBody.addExperience((int) xp);
             }
